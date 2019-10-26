@@ -2,7 +2,7 @@
 import os
 from gensim.corpora import Dictionary
 
-DICTIONARIES_DIRPATH = os.path.join(os.path.dirname(__file__), "..", "Dictionary")
+DICTIONARIES_DIRPATH = os.path.join(os.path.dirname(__file__), "..", "model", "dictionaries")
 
 def load_dictionaries():
 	print("LOADING DICTIONARIES...")
@@ -25,6 +25,8 @@ if __name__ == "__main__":
 	print("DICTIONARY 1", type(d1), len(d1))
 	for s in d1.iteritems():
 		print(s)
+
+	input("Press enter to continue")
 
 	print("-----------------------------")
 	print("DICTIONARY 2", type(d2), len(d2))

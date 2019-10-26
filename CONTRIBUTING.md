@@ -26,3 +26,17 @@ Run the classifier via a command-line client, where you'll have the opportunity 
 ```sh
 python -m app.client
 ```
+
+## Testing
+
+Install pytest:
+
+```sh
+pip install pytest # (first time only)
+```
+
+Run tests:
+
+```sh
+pytest --disable-pytest-warnings
+```
