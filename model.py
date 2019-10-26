@@ -1,3 +1,6 @@
+
+import os
+
 from keras.utils import np_utils
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, Activation, Embedding, SpatialDropout1D, Flatten
@@ -11,20 +14,19 @@ from keras.models import Model
 
 from gensim.corpora import Dictionary
 
-# dictionary = Dictionary.load_from_text('Dictionary/dic.txt')
-# dictionary_s = Dictionary.load_from_text('Dictionary/dic_s.txt')
-#dictionary = Dictionary.load('Dictionary_post_polarities/dic.txt')
-#dictionary_s = Dictionary.load('Dictionary_post_polarities/dic_s.txt')
-dictionary = Dictionary.load('Dictionary/dic.txt')
-dictionary_s = Dictionary.load('Dictionary/dic_s.txt')
-# In[10]:
-dictionary_size = len(dictionary)
-dictionary_size_s = len(dictionary_s)
-
-
-# In[11]:
+WEIGHTS_FILEPATH = os.path.join(os.path.dirname(__file__), "model-checkpoint", "weights-improvement-01-0.91.hdf5")
+assert os.path.isfile(WEIGHTS_FILEPATH)
+MODEL_FILEPATH = os.path.join(os.path.dirname(__file__), "Final_weights", "final_model.h5")
+assert os.path.isfile(MODEL_FILEPATH)
 
 def load_model():
+
+	DICTIONARIES_DIRPATH = os.path.join(os.path.dirname(__file__), "Dictionary")
+	dictionary = Dictionary.load(os.path.join(DICTIONARIES_DIRPATH, "dic.txt"))
+	dictionary_s = Dictionary.load(os.path.join(DICTIONARIES_DIRPATH, "dic_s.txt"))
+	dictionary_size = len(dictionary)
+	dictionary_size_s = len(dictionary_s)
+
 	#import model architecture
 	seq_len = 20
 	#input1
@@ -50,7 +52,6 @@ def load_model():
 	model = Model(inputs=[inputs1, inputs2], outputs=outputs)
 	print(model.summary())
 
-	#load model weights 
-	model.load_weights('Final_weights/final_weights.hdf5',by_name=True)
-	return(model)
-
+	#load model weights
+	model.load_weights(WEIGHTS_FILEPATH, by_name=True)
+	return model
