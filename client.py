@@ -19,25 +19,36 @@ def classify(txt, model):
 
 if __name__ == "__main__":
 
-    orig_model = original_model()
-    model = final_model()
+    model_o = original_model()
+    model_f = final_model()
 
-    twt = "He is awesome, make american great again. Democrats is taking off. We love democrats."
-    r1 = classify(twt, orig_model)
-    pprint(r1)
-    print("-----------------------------")
-    r2 = classify(twt, model)
-    pprint(r2)
-    print("-----------------------------")
+    example_tweets = [
+        "Trump for President!!! #MAGA",
+        "Trump is the best ever!",
+        "If Clinton is elected, I'm moving to Canada",
 
-    twt2 = "Trump for President!!! #MAGA"
-    r3 = classify(twt2, orig_model)
-    pprint(r3)
-    print("-----------------------------")
-    r3 = classify(twt2, model)
-    pprint(r3)
-    print("-----------------------------")
+        "He is awesome, make american great again. Democrats is taking off. We love democrats.",
 
+        "Hillary for President!!! #StrongerTogether",
+        "Trump is the worst ever!",
+        "If Trump is elected, I'm moving to Canada",
+    ]
+
+    for twt in example_tweets:
+        print("-----------------------------")
+        #print(f"TWEET: '{twt}'")
+        #print("-----")
+        #print("ORIGINAL MODEL SAYS...")
+        results_o = classify(twt, model_o)
+        print(results_o)
+        #print("-----")
+        #print("FINAL MODEL SAYS...")
+        results_f = classify(twt, model_f)
+        print(results_f)
+
+    exit()
+
+    model = model_o
     while True:
         user_text = input("Your Text (press ENTER at any time to quit): ")
         if user_text in ["", "exit", "exit()"]: break
