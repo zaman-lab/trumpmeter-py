@@ -23,7 +23,6 @@ def final_model():
 
 def original_model():
 	model = unweighted_model()
-
 	print("LOADING MODEL WEIGHTS...")
 	model.load_weights(WEIGHTS_FILEPATH, by_name=True)
 	return model
