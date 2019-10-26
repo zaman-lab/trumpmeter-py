@@ -1,0 +1,27 @@
+.DS_Store
+
+__pycache__
+.pytest_cache
+
+.env
+
+credentials.json
+google-credentials.json
+
+model/data/*.csv
+model/dictionaries/dic.txt
+model/dictionaries/dic_s.txt
+model/dictionaries/*.txt
+model/weights/final_weights.hdf5
+model/weights/*.hdf5
+model/weights/*.h5
+
+
+# ORIGINAL FILE STRUCTURE:
+
+Data/*.csv
+Dictionary/*.txt
+Final_Weights/*.h5
+model-checkpoint/*.hdf5
+*.csv
+*.npy
