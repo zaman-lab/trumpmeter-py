@@ -10,17 +10,16 @@ from keras.layers.convolutional import Conv1D
 from keras.layers.convolutional import MaxPooling1D
 from keras.layers.merge import concatenate
 #from keras.utils.vis_utils import plot_model
-from keras.models import Model
+from keras.models import Model, load_model
 
 from gensim.corpora import Dictionary
 
-WEIGHTS_FILEPATH = os.path.join(os.path.dirname(__file__), "model-checkpoint", "weights-improvement-01-0.91.hdf5")
-assert os.path.isfile(WEIGHTS_FILEPATH)
-MODEL_FILEPATH = os.path.join(os.path.dirname(__file__), "Final_weights", "final_model.h5")
-assert os.path.isfile(MODEL_FILEPATH)
+def final_model():
+	MODEL_FILEPATH = os.path.join(os.path.dirname(__file__), "Final_weights", "final_model.h5")
+	assert os.path.isfile(MODEL_FILEPATH)
+	return load_model(MODEL_FILEPATH)
 
-def load_model():
-
+def original_model():
 	DICTIONARIES_DIRPATH = os.path.join(os.path.dirname(__file__), "Dictionary")
 	dictionary = Dictionary.load(os.path.join(DICTIONARIES_DIRPATH, "dic.txt"))
 	dictionary_s = Dictionary.load(os.path.join(DICTIONARIES_DIRPATH, "dic_s.txt"))
@@ -52,8 +51,10 @@ def load_model():
 	dense2 = Dense(32, activation='relu')(dense1)
 	outputs = Dense(2, activation='softmax')(dense2)
 	model = Model(inputs=[inputs1, inputs2], outputs=outputs)
-	print(model.summary())
+	#print(model.summary())
 
 	#load model weights
+	WEIGHTS_FILEPATH = os.path.join(os.path.dirname(__file__), "model-checkpoint", "weights-improvement-01-0.91.hdf5")
+	assert os.path.isfile(WEIGHTS_FILEPATH)
 	model.load_weights(WEIGHTS_FILEPATH, by_name=True)
 	return model

@@ -2,7 +2,7 @@
 
 import os
 
-from model import load_model
+from model import original_model, final_model
 from helper_text import main_clean
 
 def classify(txt, model):
@@ -18,28 +18,34 @@ def classify(txt, model):
 	return response
 
 def test_classify():
+    #model = weighted_model()
+    model = final_model()
+    #print(model.summary())
+    print("MODEL:", type(model))
 
-    model = load_model()
-    print(model.summary())
-
-    twt = "He is awesome, make american great again. Democrats is taking off. We love democrats."
-    print("EXAMPLE TWEET:", twt)
+    txt = "He is awesome, make american great again. Democrats is taking off. We love democrats."
+    print("EXAMPLE TWEET:", txt)
 
     model_len = 20 # ???
-    x, x_s = main_clean(twt, model_len)
+    x, x_s = main_clean(txt, model_len)
 
     prediction = model.predict([x, x_s])
-    pro_pol = prediction[:,0]
+    #> ORIGINAL array([[0.15433621, 0.84566385]], dtype=float32)
+    #> FINAL array([[0.01033916, 0.98966086]], dtype=float32)
+    prediction = prediction[0]
+    pro_pol = prediction[0]
     print("PRO-TRUMP SCORE:", pro_pol)
-    return prediction
+    #> ORIGINAL 0.15433621
+    #> FINAL 0.010339164
+    return {"text": txt, "pro_trump": pro_pol}
 
 
 if __name__ == "__main__":
 
-    result = test_classify()
-    #> ValueError: Layer #2 (named "embedding_1"),
-    # weight <tf.Variable 'embedding_1/embeddings:0' shape=(418348, 128) dtype=float32, numpy=array([...]], dtype=float32)>
-    # has shape (418348, 128), but the saved weight has shape (418348, 64).
+    test_classify()
+
+
+
 
 	#model = load_model()
     #while True:
