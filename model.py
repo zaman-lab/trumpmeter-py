@@ -12,20 +12,20 @@ from keras.layers.merge import concatenate
 #from keras.utils.vis_utils import plot_model
 from keras.models import Model, load_model
 
-from gensim.corpora import Dictionary
+from app.dictionaries import load_dictionaries
 
 def final_model():
+	print("LOADING FINAL MODEL...")
 	MODEL_FILEPATH = os.path.join(os.path.dirname(__file__), "Final_weights", "final_model.h5")
 	assert os.path.isfile(MODEL_FILEPATH)
 	return load_model(MODEL_FILEPATH)
 
 def original_model():
-	DICTIONARIES_DIRPATH = os.path.join(os.path.dirname(__file__), "Dictionary")
-	dictionary = Dictionary.load(os.path.join(DICTIONARIES_DIRPATH, "dic.txt"))
-	dictionary_s = Dictionary.load(os.path.join(DICTIONARIES_DIRPATH, "dic_s.txt"))
-	dictionary_size = len(dictionary)
-	dictionary_size_s = len(dictionary_s)
 
+	dictionary, dictionary_s = load_dictionaries()
+	dictionary_size, dictionary_size_s = len(dictionary), len(dictionary_s)
+
+	print("CONSTRUCTING THE MODEL...")
 	#import model architecture
 	seq_len = 20
 	#input1
@@ -54,7 +54,9 @@ def original_model():
 	#print(model.summary())
 
 	#load model weights
+	print("LOADING MODEL WEIGHTS...")
 	WEIGHTS_FILEPATH = os.path.join(os.path.dirname(__file__), "model-checkpoint", "weights-improvement-01-0.91.hdf5")
 	assert os.path.isfile(WEIGHTS_FILEPATH)
 	model.load_weights(WEIGHTS_FILEPATH, by_name=True)
+
 	return model
