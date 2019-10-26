@@ -31,14 +31,16 @@ def load_model():
 	seq_len = 20
 	#input1
 	inputs1 = Input(shape=(seq_len,))
-	embedding1 = Embedding(dictionary_size + 1, 128)(inputs1)
+	#embedding1 = Embedding(dictionary_size + 1, 128)(inputs1)
+	embedding1 = Embedding(dictionary_size + 1, 64)(inputs1) # changed from 128 to 64 to match saved weights file
 	conv1 = Conv1D(filters=32, kernel_size=3, activation='relu', padding='valid')(embedding1)
 	drop1 = Dropout(0.2)(conv1)
 	pool1 = MaxPooling1D(pool_size=2)(drop1)
 	flat1 = Flatten()(pool1)
 	#Input2
 	inputs2 = Input(shape=(seq_len,))
-	embedding2 = Embedding(dictionary_size_s + 1, 128)(inputs2)
+	#embedding2 = Embedding(dictionary_size_s + 1, 128)(inputs2)
+	embedding2 = Embedding(dictionary_size_s + 1, 64)(inputs2) # changed from 128 to 64 to match saved weights file
 	conv2 = Conv1D(filters=32, kernel_size=3, activation='relu', padding='valid')(embedding2)
 	drop2 = Dropout(0.2)(conv2)
 	pool2 = MaxPooling1D(pool_size=2)(drop2)
