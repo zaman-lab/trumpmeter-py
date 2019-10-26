@@ -36,15 +36,15 @@ if __name__ == "__main__":
 
     for twt in example_tweets:
         print("-----------------------------")
-        #print(f"TWEET: '{twt}'")
+        print(f"TWEET: '{twt}'")
         #print("-----")
         #print("ORIGINAL MODEL SAYS...")
-        results_o = classify(twt, model_o)
-        print(results_o)
+        response_o = classify(twt, model_o)
+        print("ORIG:", response_o["results"])
         #print("-----")
         #print("FINAL MODEL SAYS...")
-        results_f = classify(twt, model_f)
-        print(results_f)
+        response_f = classify(twt, model_f)
+        print("FINAL:", response_f["results"])
 
     exit()
 
