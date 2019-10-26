@@ -14,14 +14,21 @@ from keras.models import Model, load_model
 
 from app.dictionaries import load_dictionaries
 
+WEIGHTS_FILEPATH = os.path.join(os.path.dirname(__file__), "..", "model", "weights", "weights-improvement-01-0.91.hdf5")
+MODEL_FILEPATH = os.path.join(os.path.dirname(__file__),"..", "model", "final_model.h5")
+
 def final_model():
 	print("LOADING FINAL MODEL...")
-	MODEL_FILEPATH = os.path.join(os.path.dirname(__file__), "Final_weights", "final_model.h5")
-	assert os.path.isfile(MODEL_FILEPATH)
 	return load_model(MODEL_FILEPATH)
 
 def original_model():
+	model = unweighted_model()
 
+	print("LOADING MODEL WEIGHTS...")
+	model.load_weights(WEIGHTS_FILEPATH, by_name=True)
+	return model
+
+def unweighted_model():
 	dictionary, dictionary_s = load_dictionaries()
 	dictionary_size, dictionary_size_s = len(dictionary), len(dictionary_s)
 
@@ -52,11 +59,5 @@ def original_model():
 	outputs = Dense(2, activation='softmax')(dense2)
 	model = Model(inputs=[inputs1, inputs2], outputs=outputs)
 	#print(model.summary())
-
-	#load model weights
-	print("LOADING MODEL WEIGHTS...")
-	WEIGHTS_FILEPATH = os.path.join(os.path.dirname(__file__), "model-checkpoint", "weights-improvement-01-0.91.hdf5")
-	assert os.path.isfile(WEIGHTS_FILEPATH)
-	model.load_weights(WEIGHTS_FILEPATH, by_name=True)
 
 	return model

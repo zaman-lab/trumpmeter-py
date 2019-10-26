@@ -8,20 +8,10 @@ __pycache__
 credentials.json
 google-credentials.json
 
+model/*.h5
 model/data/*.csv
-model/dictionaries/dic.txt
-model/dictionaries/dic_s.txt
 model/dictionaries/*.txt
-model/weights/final_weights.hdf5
 model/weights/*.hdf5
-model/weights/*.h5
 
-
-# ORIGINAL FILE STRUCTURE:
-
-Data/*.csv
-Dictionary/*.txt
-Final_Weights/*.h5
-model-checkpoint/*.hdf5
-*.csv
-*.npy
+model/training/*.csv
+model/training/*.npy
