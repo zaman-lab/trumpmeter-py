@@ -10,7 +10,7 @@ google-credentials.json
 
 model/*.h5
 model/data/*.csv
-#model/dictionaries/*.txt
+model/dictionaries/*.txt
 model/weights/*.hdf5
 
 model/training/*.csv
