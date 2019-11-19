@@ -1,7 +1,8 @@
 # Credits, Notes, and Reference
 
-This is a (re)production of the original Trumpmeter, by Zhechao Huang, with contributions by Andrew ______.
+This is a (re)production of the original Trumpmeter, by Zhechao Huang, with training contributions by Andrew _____.
 
+See also: the [Brexitmeter](https://github.com/zaman-lab/brexitmeter-py).
 
 ## NPY Files
 
