@@ -17,11 +17,11 @@ if __name__ == "__main__":
         print("\n-----------------------------")
         print(f"TWEET: '{twt}'")
         response_o = classify(twt, model_o)
-        print("ORIG:", response_o["temp"])
+        print("ORIG:", response_o["pro_trump"])
         response_f = classify(twt, model_f)
-        print("FINAL:", response_f["temp"])
+        print("FINAL:", response_f["pro_trump"])
         response_r = classify(twt, model_r)
-        print("RECONST:", response_r["temp"])
+        print("RECONST:", response_r["pro_trump"])
 
     exit()
 

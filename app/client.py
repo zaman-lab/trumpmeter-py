@@ -16,7 +16,10 @@ def classify(txt, model):
     results = model.predict([x, x_s])
     results = results[0]
     #return {"text": txt, "pro_trump": results[0], "other_num": results[1]} # not really sure if these are correct assignments
-    return {"text": txt, "pro_trump": results[0], "temp": [round(float(score), 4) for score in results] }
+    #return {"text": txt, "pro_trump": results[0], "temp": [round(float(score), 4) for score in results] } # pro-trump appears to be the second number
+    #pro_score = round(float(results[1]), 4)
+    pro_score = results[1]
+    return {"text": txt, "pro_trump": pro_score}
 
 if __name__ == "__main__":
 
@@ -26,7 +29,7 @@ if __name__ == "__main__":
         print("\n-----------------------------")
         print(f"TWEET: '{twt}'")
         response = classify(twt, model)
-        print("CLASSIFICATION:", response["temp"])
+        print("CLASSIFICATION:", response["pro_trump"])
 
     while True:
         user_text = input("Your Text (press ENTER at any time to quit): ")
