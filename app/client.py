@@ -17,8 +17,8 @@ def classify(txt, model):
     results = results[0]
     #return {"text": txt, "pro_trump": results[0], "other_num": results[1]} # not really sure if these are correct assignments
     #return {"text": txt, "pro_trump": results[0], "temp": [round(float(score), 4) for score in results] } # pro-trump appears to be the second number
-    #pro_score = round(float(results[1]), 4)
-    pro_score = results[1]
+    pro_score = round(float(results[1]), 4)
+    #pro_score = results[1]
     return {"text": txt, "pro_trump": pro_score}
 
 if __name__ == "__main__":
