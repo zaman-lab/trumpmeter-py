@@ -1,11 +1,11 @@
 
 
-from app.model import final_model, original_model
+from app.model import saved_model, weighted_model
 from app.client import classify
 
 def test_original_classifications():
 
-    model = original_model()
+    model = weighted_model()
 
     r1 = classify("Make america great again! Trump for President! #MAGA", model)
     #assert round(float(r1["pro_trump"]), 4) == 0.6885
@@ -25,7 +25,7 @@ def test_original_classifications():
 
 def test_final_classifications():
 
-    model = final_model()
+    model = saved_model()
 
     r1 = classify("Make america great again! Trump for President! #MAGA", model)
     #assert round(float(r1["pro_trump"]), 4) == 0.9867

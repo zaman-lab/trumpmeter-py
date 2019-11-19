@@ -17,11 +17,11 @@ from app.dictionaries import load_dictionaries
 WEIGHTS_FILEPATH = os.path.join(os.path.dirname(__file__), "..", "model", "weights", "weights-improvement-01-0.91.hdf5")
 MODEL_FILEPATH = os.path.join(os.path.dirname(__file__),"..", "model", "final_model.h5")
 
-def final_model():
+def saved_model():
 	print("LOADING FINAL MODEL...")
 	return load_model(MODEL_FILEPATH)
 
-def original_model():
+def weighted_model():
 	model = unweighted_model()
 	print("LOADING MODEL WEIGHTS...")
 	model.load_weights(WEIGHTS_FILEPATH, by_name=True)
