@@ -17,6 +17,12 @@ Install package dependencies:
 pip install -r requirements.txt # (first time only)
 ```
 
+### Model File Storage
+
+To classify text, this app needs access to the model's final weights file, which we're hosting on a publicly-available Google Cloud Storage bucket called ["trumpmeter-bucket"](https://console.cloud.google.com/storage/browser/trumpmeter-bucket/).
+
+Download the final model weights file (`gs://trumpmeter-bucket/model/weights/weights-reconstructed.hdf5`) and move it into the local "model/weights" directory.
+
 ## Usage
 
 ### CLI
