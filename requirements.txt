@@ -1,0 +1,20 @@
+# for neural networks:
+keras
+tensorflow
+
+# for natural language and data processing:
+gensim
+wordsegment
+nltk
+
+h5py
+pandas
+numpy
+
+python-dotenv # a.k.a. dotenv, for reading environment vars from the ".env" file
+tweepy # for interfacing with the twitter api
+google-cloud-storage # for reading remotely hosted model files
+
+# for dataviz
+matplotlib # for image generation
+pillow # a.k.a. PIL, for image generation

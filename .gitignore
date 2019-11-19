@@ -1,0 +1,17 @@
+.DS_Store
+
+__pycache__
+.pytest_cache
+
+.env
+
+credentials.json
+google-credentials.json
+
+model/*.h5
+model/data/*.csv
+model/dictionaries/*.txt
+model/weights/*.hdf5
+
+model/training/*.csv
+model/training/*.npy
