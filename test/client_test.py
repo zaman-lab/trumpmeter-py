@@ -1,11 +1,11 @@
 
 
-from app.model import saved_model, weighted_model
+from app.model import original_model, saved_final_model, reconstructed_final_model
 from app.client import classify
 
 def test_original_classifications():
 
-    model = weighted_model()
+    model = original_model()
 
     r1 = classify("Make america great again! Trump for President! #MAGA", model)
     #assert round(float(r1["pro_trump"]), 4) == 0.6885
@@ -25,20 +25,24 @@ def test_original_classifications():
 
 def test_final_classifications():
 
-    model = saved_model()
+    # these two models should give the same results
+    model_from_file = saved_final_model()
+    model_from_weights = reconstructed_final_model()
 
-    r1 = classify("Make america great again! Trump for President! #MAGA", model)
-    #assert round(float(r1["pro_trump"]), 4) == 0.9867
-    assert r1["temp"] == [0.0133, 0.9867]
+    for model in [model_from_file, model_from_weights]:
 
-    r2 = classify("RT @someuser: Trump is, by far, the best POTUS in history. \n\nBonus: He^s friggin^ awesome!\n\nTrump gave Pelosi and the Dems the ultimate\u2026 ", model)
-    #assert round(float(r2["pro_trump"]), 4) == 0.9928
-    assert r2["temp"] == [0.0072, 0.9928]
+        r1 = classify("Make america great again! Trump for President! #MAGA", model)
+        #assert round(float(r1["pro_trump"]), 4) == 0.9867
+        assert r1["temp"] == [0.0133, 0.9867]
 
-    r3 = classify("If Trump wins I'm moving to Canada #StrongerTogether", model)
-    #assert round(float(r3["pro_trump"]), 4) == 0.0
-    assert r3["temp"] == [1.0, 0.0]
+        r2 = classify("RT @someuser: Trump is, by far, the best POTUS in history. \n\nBonus: He^s friggin^ awesome!\n\nTrump gave Pelosi and the Dems the ultimate\u2026 ", model)
+        #assert round(float(r2["pro_trump"]), 4) == 0.9928
+        assert r2["temp"] == [0.0072, 0.9928]
 
-    r4 = classify("RT @MotherJones: A scientist who resisted Trump administration censorship of climate report just lost her job", model)
-    #assert round(float(r4["pro_trump"]), 4) == 0.0
-    assert r4["temp"] == [1.0, 0.0]
+        r3 = classify("If Trump wins I'm moving to Canada #StrongerTogether", model)
+        #assert round(float(r3["pro_trump"]), 4) == 0.0
+        assert r3["temp"] == [1.0, 0.0]
+
+        r4 = classify("RT @MotherJones: A scientist who resisted Trump administration censorship of climate report just lost her job", model)
+        #assert round(float(r4["pro_trump"]), 4) == 0.0
+        assert r4["temp"] == [1.0, 0.0]

@@ -14,17 +14,31 @@ from keras.models import Model, load_model
 
 from app.dictionaries import load_dictionaries
 
-WEIGHTS_FILEPATH = os.path.join(os.path.dirname(__file__), "..", "model", "weights", "weights-improvement-01-0.91.hdf5")
-MODEL_FILEPATH = os.path.join(os.path.dirname(__file__),"..", "model", "final_model.h5")
+ORIGINAL_WEIGHTS_FILEPATH = os.path.join(os.path.dirname(__file__), "..", "model", "weights", "weights-improvement-01-0.91.hdf5")
+FINAL_MODEL_FILEPATH = os.path.join(os.path.dirname(__file__),"..", "model", "final_model.h5")
+FINAL_WEIGHTS_FILEPATH = os.path.join(os.path.dirname(__file__), "..", "model", "weights", "weights-reconstructed.hdf5")
 
-def saved_model():
+def reconstructed_final_model(idempotent=True):
+    if idempotent == False:
+        recreate_weights(FINAL_WEIGHTS_FILEPATH)
+    model = unweighted_model()
+    model.load_weights(FINAL_WEIGHTS_FILEPATH)
+    return model
+
+def recreate_weights(weights_filepath):
+	print("SAVING FINAL MODEL WEIGHTS TO:", weights_filepath)
+	model = saved_final_model()
+	model.save_weights(weights_filepath)
+	return True
+
+def saved_final_model():
 	print("LOADING FINAL MODEL...")
-	return load_model(MODEL_FILEPATH)
+	return load_model(FINAL_MODEL_FILEPATH)
 
-def weighted_model():
+def original_model():
 	model = unweighted_model()
 	print("LOADING MODEL WEIGHTS...")
-	model.load_weights(WEIGHTS_FILEPATH, by_name=True)
+	model.load_weights(ORIGINAL_WEIGHTS_FILEPATH, by_name=True)
 	return model
 
 def unweighted_model():

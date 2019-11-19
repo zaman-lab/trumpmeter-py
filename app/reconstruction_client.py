@@ -4,15 +4,14 @@ import os
 
 from conftest import EXAMPLE_TWEETS
 from app.client import classify
-from app.model import weighted_model, saved_model
-from app.reconstruction import reconstructed_model
+from app.model import original_model, saved_final_model, reconstructed_final_model
 from app.helper_text import main_clean
 
 if __name__ == "__main__":
 
-    model_o = weighted_model()
-    model_f = saved_model()
-    model_r = reconstructed_model()
+    model_o = original_model()
+    model_f = saved_final_model()
+    model_r = reconstructed_final_model()
 
     for twt in EXAMPLE_TWEETS:
         print("\n-----------------------------")
