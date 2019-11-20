@@ -24,6 +24,12 @@ To classify text, this app needs access to the model's final weights file, which
   + Download the dictionary files (`gs://trumpmeter-bucket/model/dictionaries`) and move them into the local "model/dictionaries" directory.
   + Download the final model weights file (`gs://trumpmeter-bucket/model/weights/weights-reconstructed.hdf5`) and move it into the local "model/weights" directory.
 
+### Twitter Bot Setup
+
+Create a [Twitter account](https://twitter.com/) with a handle like ["@trumpmeter_bot"](https://twitter.com/trumpmeter_bot), and set the `TWITTER_BOT_HANDLE` environment variable accordingly.
+
+Obtain credentials for your own [Twitter app](https://developer.twitter.com/) with access to the Twitter API, and set the environment variables `TWITTER_CONSUMER_KEY`, `TWITTER_CONSUMER_SECRET`, `TWITTER_ACCESS_TOKEN`, and `TWITTER_ACCESS_TOKEN_SECRET` accordingly.
+
 ## Usage
 
 ### CLI
