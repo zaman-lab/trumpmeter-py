@@ -2,12 +2,21 @@
 import os
 from gensim.corpora import Dictionary
 
-DICTIONARIES_DIRPATH = os.path.join(os.path.dirname(__file__), "..", "model", "dictionaries")
+from app.storage_service import STORAGE_ENV, dictionaries_dirpath
 
-def load_dictionaries():
-	print("LOADING DICTIONARIES...")
-	dict1 = Dictionary.load(os.path.join(DICTIONARIES_DIRPATH, "dic.txt"))
-	dict2 = Dictionary.load(os.path.join(DICTIONARIES_DIRPATH, "dic_s.txt"))
+def load_dictionaries(storage_env="local"):
+	dirpath = dictionaries_dirpath(storage_env)
+	if storage_env == "local":
+		dict1 = Dictionary.load(os.path.join(dirpath, "dic.txt"))
+		dict2 = Dictionary.load(os.path.join(dirpath, "dic_s.txt"))
+	elif storage_env == "remote":
+		# todo: construct Dictionary objects from remote file contents
+		# texts = [
+		# 	['human', 'interface', 'computer']
+		# ]
+		# my_dict = Dictionary(texts)
+		raise NotImplementedError
+
 	return dict1, dict2
 
 if __name__ == "__main__":
