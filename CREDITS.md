@@ -2,7 +2,7 @@
 
 This is a (re)production of the original Trumpmeter, by Zhechao Huang, with training contributions by Andrew _____.
 
-See also: the [Brexitmeter](https://github.com/zaman-lab/brexitmeter-py).
+See also: the [Brexitmeter](https://github.com/zaman-lab/brexitmeter-py) and [BrexitMeter Credits](https://github.com/zaman-lab/brexitmeter-py/blob/master/CREDITS.md).
 
 ## NPY Files
 

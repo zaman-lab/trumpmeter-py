@@ -19,10 +19,23 @@ pip install -r requirements.txt # (first time only)
 
 ### Model File Storage
 
-To classify text, this app needs access to the model's final weights file, which we're hosting on a publicly-available Google Cloud Storage bucket called ["trumpmeter-bucket"](https://console.cloud.google.com/storage/browser/trumpmeter-bucket/).
+To classify text, this app needs access to certain model-related files, which we're hosting on a publicly-available Google Cloud Storage bucket called ["trumpmeter-bucket"](https://console.cloud.google.com/storage/browser/trumpmeter-bucket/).
 
-  + Download the dictionary files (`gs://trumpmeter-bucket/model/dictionaries`) and move them into the local "model/dictionaries" directory.
-  + Download the final model weights file (`gs://trumpmeter-bucket/model/weights/weights-reconstructed.hdf5`) and move it into the local "model/weights" directory.
+  + `gs://trumpmeter-bucket/model/weights/weights-reconstructed.hdf5`
+  + `gs://trumpmeter-bucket/model/dictionaries`
+
+Feel free to use the files in this bucket (i.e. "remote" storage option), or download them into your local repository for faster file-load times (i.e. "local" storage option). Depending on which storage option you choose ("local" or "remote"), set the environment variable `STORAGE_ENV` accordingly. If choosing the "remote" storage option: download your Google Cloud API service account credentials and set the `GOOGLE_APPLICATION_CREDENTIALS` environment variable accordingly.
+
+After configuring your storage option, run the storage service to verify all files are in place:
+
+```sh
+python -m app.storage_service
+# OR
+STORAGE_ENV="local" python -m app.storage_service
+# OR
+STORAGE_ENV="remote" python -m app.storage_service
+```
+
 
 ## Usage
 

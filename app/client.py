@@ -3,7 +3,7 @@ from pprint import pprint
 import os
 
 from conftest import EXAMPLE_TWEETS
-from app.model import reconstructed_final_model
+from app.model import production_model #reconstructed_final_model
 from app.helper_text import main_clean
 
 def classify(txt, model):
@@ -23,7 +23,7 @@ def classify(txt, model):
 
 if __name__ == "__main__":
 
-    model = reconstructed_final_model()
+    model = production_model() # reconstructed_final_model()
 
     for twt in EXAMPLE_TWEETS:
         print("\n-----------------------------")
