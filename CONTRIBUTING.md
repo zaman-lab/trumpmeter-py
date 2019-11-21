@@ -36,6 +36,8 @@ STORAGE_ENV="local" python -m app.storage_service
 STORAGE_ENV="remote" python -m app.storage_service
 ```
 
+> NOTE: the "Usage" commands also respect this STORAGE_ENV setting
+
 ### Twitter Bot Setup
 
 Create a [Twitter account](https://twitter.com/) with a handle like ["@trumpmeter_bot"](https://twitter.com/trumpmeter_bot), and set the `TWITTER_BOT_HANDLE` environment variable accordingly.
