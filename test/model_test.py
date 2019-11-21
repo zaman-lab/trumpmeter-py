@@ -5,7 +5,7 @@ from keras.engine.training import Model
 from app.model import (
     ORIGINAL_WEIGHTS_FILEPATH, FINAL_MODEL_FILEPATH, FINAL_WEIGHTS_FILEPATH,
     unweighted_model, original_model,
-    saved_final_model, reconstructed_final_model
+    saved_final_model, reconstructed_final_model, production_model
 )
 
 def test_filepaths():
@@ -24,3 +24,6 @@ def test_saved_final_model():
 
 def test_reconstructed_final_model():
     assert isinstance(reconstructed_final_model(), Model)
+
+def test_production_model():
+    assert isinstance(production_model(), Model)

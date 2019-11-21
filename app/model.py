@@ -13,10 +13,17 @@ from keras.layers.merge import concatenate
 from keras.models import Model, load_model
 
 from app.dictionaries import load_dictionaries
+from app.storage_service import weights_filepath
 
 ORIGINAL_WEIGHTS_FILEPATH = os.path.join(os.path.dirname(__file__), "..", "model", "weights", "weights-improvement-01-0.91.hdf5")
 FINAL_MODEL_FILEPATH = os.path.join(os.path.dirname(__file__),"..", "model", "final_model.h5")
 FINAL_WEIGHTS_FILEPATH = os.path.join(os.path.dirname(__file__), "..", "model", "weights", "weights-reconstructed.hdf5")
+
+def production_model():
+	model = unweighted_model()
+	print("LOADING MODEL WEIGHTS...")
+	model.load_weights(weights_filepath())
+	return model
 
 def reconstructed_final_model(idempotent=True):
     if idempotent == False:

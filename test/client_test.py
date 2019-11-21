@@ -1,6 +1,6 @@
 
 
-from app.model import original_model, saved_final_model, reconstructed_final_model
+from app.model import original_model, saved_final_model, reconstructed_final_model, production_model
 from app.client import classify
 
 def test_original_classifications():
@@ -28,8 +28,9 @@ def test_final_classifications():
     # these two models should give the same results
     model_from_file = saved_final_model()
     model_from_weights = reconstructed_final_model()
+    model_from_storage_service = production_model()
 
-    for model in [model_from_file, model_from_weights]:
+    for model in [model_from_file, model_from_weights, model_from_storage_service]:
 
         r1 = classify("Make america great again! Trump for President! #MAGA", model)
         #assert r1["pro_trump"] == [0.0133, 0.9867]
