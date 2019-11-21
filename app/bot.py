@@ -9,7 +9,7 @@ from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
 from tweepy import Stream
 
-from app import APP_ENV
+from app import APP_ENV, STORAGE_ENV
 from app.model import production_model
 from app.client import classify
 #from app.image_generator import save_polarity_image
@@ -123,6 +123,8 @@ class StdOutListener(StreamListener):
 if __name__ == '__main__':
 
     print("APP ENV", APP_ENV)
+
+    print("STORAGE ENV", STORAGE_ENV)
 
     listener = StdOutListener(model=production_model())
     print("LISTENER", type(listener))
