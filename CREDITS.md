@@ -15,3 +15,7 @@ See also: the [Brexitmeter](https://github.com/zaman-lab/brexitmeter-py) and [Br
 ## Images
 
   + [Trump icon](https://icon-library.net/icon/donald-trump-icon-13.html)
+
+## Heroku
+
+  + [Setting Python Runtimes](https://devcenter.heroku.com/articles/python-runtimes)
