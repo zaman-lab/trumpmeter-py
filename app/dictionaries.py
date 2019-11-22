@@ -35,7 +35,9 @@ if __name__ == "__main__":
 	for s in d1.iteritems():
 		print(s)
 
-	input("Press enter to continue")
+	print("-----------------------------")
+	print("-----------------------------")
+	print("-----------------------------")
 
 	print("-----------------------------")
 	print("DICTIONARY 2", type(d2), len(d2))
