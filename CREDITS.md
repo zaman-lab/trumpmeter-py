@@ -19,3 +19,4 @@ See also: the [Brexitmeter](https://github.com/zaman-lab/brexitmeter-py) and [Br
 ## Heroku
 
   + [Setting Python Runtimes](https://devcenter.heroku.com/articles/python-runtimes)
+  + [Issues with the google credentials buildpack](https://github.com/elishaterada/heroku-google-application-credentials-buildpack/pull/5)
