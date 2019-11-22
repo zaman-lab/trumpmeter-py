@@ -3,6 +3,7 @@ from pprint import pprint
 import os
 
 from conftest import EXAMPLE_TWEETS
+from app import APP_ENV
 from app.model import production_model #reconstructed_final_model
 from app.helper_text import main_clean
 
@@ -31,9 +32,10 @@ if __name__ == "__main__":
         response = classify(twt, model)
         print("CLASSIFICATION:", response["pro_trump"])
 
-    while True:
-        user_text = input("Your Text (press ENTER at any time to quit): ")
-        if user_text in ["", "exit", "exit()"]: break
-        results = classify(user_text, model)
-        pprint(results)
-        print("-----------------------------")
+    if APP_ENV != "production":
+        while True:
+            user_text = input("Your Text (press ENTER at any time to quit): ")
+            if user_text in ["", "exit", "exit()"]: break
+            results = classify(user_text, model)
+            pprint(results)
+            print("-----------------------------")

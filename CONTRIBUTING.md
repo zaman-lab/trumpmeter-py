@@ -73,3 +73,76 @@ Run tests:
 ```sh
 pytest --disable-pytest-warnings
 ```
+
+
+## Deploying
+
+Create a new app server (first time only):
+
+```sh
+heroku create trumpmeter-bot # (use your own app name here)
+```
+
+Provision and configure the Google Application Credentials Buildpack to generate a credentials file on the server:
+
+```sh
+heroku buildpacks:set heroku/python
+#heroku buildpacks:add https://github.com/elishaterada/heroku-google-application-credentials-buildpack
+# this isn't working at the moment, so instead:
+heroku buildpacks:add https://github.com/heavyperil/heroku-google-application-credentials-buildpack
+heroku config:set GOOGLE_CREDENTIALS="$(< google-credentials.json)"
+heroku config:set GOOGLE_APPLICATION_CREDENTIALS="google-credentials.json"
+```
+
+Configure the rest of the environment variables:
+
+```sh
+heroku config:set APP_ENV="production"
+heroku config:set STORAGE_ENV="remote"
+# etc...
+heroku config:set TWITTER_BOT_HANDLE="@trumpmeter_bot"
+heroku config:set TWITTER_CONSUMER_KEY="____"
+heroku config:set TWITTER_CONSUMER_SECRET="____"
+heroku config:set TWITTER_ACCESS_TOKEN="____-____"
+heroku config:set TWITTER_ACCESS_TOKEN_SECRET="____"
+```
+
+Deploy:
+
+```sh
+# from master branch
+git checkout master
+git push heroku master
+
+# or from another branch
+git checkout mybranch
+git push heroku mybranch:master
+```
+
+Test everything is working in production:
+
+```sh
+heroku run "python -m app.storage_service"
+heroku run "python -m app.dictionaries"
+heroku run "python -m app.client"
+```
+
+Run the bot in production, manually:
+
+```sh
+heroku run "python -m app.bot"
+```
+
+... though ultimately you'll want to setup a Heroku "dyno" to run the bot as a background process (see the "Procfile"):
+
+```sh
+heroku ps:resize bot=standard-2x
+heroku ps:resize client=standard-2x
+```
+
+Checking logs:
+
+```sh
+heroku logs --ps bot
+heroku logs --ps client
+```
