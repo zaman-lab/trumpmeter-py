@@ -99,7 +99,7 @@ class StdOutListener(StreamListener):
             print(result)
             score = result["pro_trump"]
             message += f" I think this tweet is {str(int(score*100))}% pro-Trump"
-            #media_filepath = save_brexit_image(score)
+            #media_filepath = save_polarity_image(score)
 
         if APP_ENV != "production":
             message += f" [env:{APP_ENV}]"
