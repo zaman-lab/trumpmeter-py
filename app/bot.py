@@ -84,7 +84,7 @@ class StdOutListener(StreamListener):
 
         # remove the bot's handle... consider moving this logic into the classifier itself?
         print(status.text)
-        tweet_text = status.text #> 'Testing the @brexitmeter_bot Oh yeah!'
+        tweet_text = status.text #> 'Testing the @bot Oh yeah!'
         tweet_text = "".join(tweet_text.split(BOT_HANDLE)) #> 'Testing the  Oh yeah!'
         tweet_text = " ".join(tweet_text.split()) #> 'Testing the Oh yeah!'
         print(tweet_text)
@@ -97,16 +97,9 @@ class StdOutListener(StreamListener):
         else:
             result = classify(tweet_text, self.model) # pass in pre-loaded model to prevent re-loading
             print(result)
-            #score = result["pro_brexit"]
-            #if score > 0.4 and score < 0.6:
-            #    message += " I think this tweet is either neutral or I have never seen such language before " + u"\U0001F644"
-            #else:
-            #    message += f" I think this tweet is {str(int(score*100))}% Pro-Brexit"
-            #    media_filepath = save_brexit_image(score)
-
             score = result["pro_trump"]
             message += f" I think this tweet is {str(int(score*100))}% pro-Trump"
-
+            #media_filepath = save_brexit_image(score)
 
         if APP_ENV != "production":
             message += f" [env:{APP_ENV}]"
