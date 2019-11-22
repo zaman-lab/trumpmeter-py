@@ -86,6 +86,7 @@ heroku create trumpmeter-bot # (use your own app name here)
 Provision and configure the Google Application Credentials Buildpack to generate a credentials file on the server:
 
 ```sh
+heroku buildpacks:set heroku/python
 heroku buildpacks:add https://github.com/elishaterada/heroku-google-application-credentials-buildpack
 heroku config:set GOOGLE_CREDENTIALS="$(< google-credentials.json)"
 heroku config:set GOOGLE_APPLICATION_CREDENTIALS="google-credentials.json"
