@@ -7,9 +7,9 @@ def test_original_classifications():
 
     model = original_model()
 
-    #r1 = classify("Make america great again! Trump for President! #MAGA", model)
-    ##assert r1["pro_trump"] == [0.3115, 0.6885]
-    #assert round(float(r1["pro_trump"]), 4) == 0.6885
+    r1 = classify("Make america great again! Trump for President! #MAGA", model)
+    #assert r1["pro_trump"] == [0.3115, 0.6885]
+    assert round(float(r1["pro_trump"]), 4) == 0.6885
 
     r2 = classify("RT @someuser: Trump is, by far, the best POTUS in history. \n\nBonus: He^s friggin^ awesome!\n\nTrump gave Pelosi and the Dems the ultimate\u2026 ", model)
     #assert r2["pro_trump"] == [0.7015, 0.2985]
