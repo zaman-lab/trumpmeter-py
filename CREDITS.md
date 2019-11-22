@@ -11,3 +11,7 @@ See also: the [Brexitmeter](https://github.com/zaman-lab/brexitmeter-py) and [Br
 ## Keras
 
   + [Loading Keras Models](https://stackoverflow.com/questions/35074549/how-to-load-a-model-from-an-hdf5-file-in-keras)
+
+## Images
+
+  + [Trump icon](https://icon-library.net/icon/donald-trump-icon-13.html)
