@@ -137,10 +137,12 @@ heroku run "python -m app.bot"
 
 ```sh
 heroku ps:resize bot=standard-2x
+heroku ps:resize client=standard-2x
 ```
 
 Checking logs:
 
 ```sh
 heroku logs --ps bot
+heroku logs --ps client
 ```
