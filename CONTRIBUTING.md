@@ -36,6 +36,11 @@ STORAGE_ENV="local" python -m app.storage_service
 STORAGE_ENV="remote" python -m app.storage_service
 ```
 
+### Twitter Bot Setup
+
+Create a [Twitter account](https://twitter.com/) with a handle like ["@trumpmeter_bot"](https://twitter.com/trumpmeter_bot), and set the `TWITTER_BOT_HANDLE` environment variable accordingly.
+
+Obtain credentials for your own [Twitter app](https://developer.twitter.com/) with access to the Twitter API, and set the environment variables `TWITTER_CONSUMER_KEY`, `TWITTER_CONSUMER_SECRET`, `TWITTER_ACCESS_TOKEN`, and `TWITTER_ACCESS_TOKEN_SECRET` accordingly.
 
 ## Usage
 
@@ -45,6 +50,14 @@ Run the classifier via a command-line client, where you'll have the opportunity 
 
 ```sh
 python -m app.client
+```
+
+### Twitter Bot
+
+Run the classifier via a Twitter Bot, which will reply to at-mentions with the predicted pro-Trump score polarity score:
+
+```sh
+python -m app.bot
 ```
 
 ## Testing

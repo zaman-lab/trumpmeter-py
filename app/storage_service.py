@@ -7,9 +7,10 @@ from dotenv import load_dotenv
 from google.cloud import storage
 import tensorflow as tf # from tensorflow.io import gfile
 
+from app import STORAGE_ENV
+
 load_dotenv()
 
-STORAGE_ENV = os.getenv("STORAGE_ENV", default="local") # "local" OR "remote"
 GOOGLE_APPLICATION_CREDENTIALS = os.getenv("GOOGLE_APPLICATION_CREDENTIALS", default="/abspath/to/google-credentials.json") # implicit check by google.cloud (and keras)
 GOOGLE_STORAGE_PATH= os.getenv("GOOGLE_STORAGE_PATH", default="gs://trumpmeter-bucket")
 
